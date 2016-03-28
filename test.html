@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Unit Test for Is.js</title>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/~tasimmons/plugin/bootstrap/css/bootstrap.min.css">
+    
+    <!-- is.js script -->
+    <script src="is.js"></script>
+    
+    <!-- QUnit -->
+    <script src="/~tasimmons/plugin/qunit/qunit.js"></script>
+    <link href="/~tasimmons/plugin/qunit/qunit.css" rel="stylesheet">
+    
+    <!-- test script -->
+    <script src="test.js"></script>
+  </head>
+
+  <body>
+      <div class="container">
+      <h2>Is.js Unit Testing and Documentation</h2>
+      <hr>
+      <h3>
+        Automated Qunit Tests
+        <span class="pull-right"><a href="http://zwang.vwc.edu/~tasimmons/portfolio/is_js/dev/test.js" target="_blank">View Test Source</a></span>
+      </h3>
+      <div id="qunit"></div>
+      <div id="qunit-fixture"></div>
+
+      <h2>Is.js Example Documentation</h2>
+      <hr>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <code>boolean Is.a(vararg v, string|class type)</code>
+        </div>
+        <div class="panel-body">
+          <p>
+            Returns true if <code>v</code> matches type <code>type</code> or an alias registered under <code>type</code> with <code>Is::registerAlias</code> (see below). Returns false otherwise (if a string <code>type</code> is invalid, <code>Is::a</code> will also return false). This conglomerates <code>typeof</code> and <code>instanceof</code> checks, so bear in mind it is not suitable for cross-frame checks.
+          </p>
+          <pre>
+            Is.a([], 'object');       // true
+            Is.a([], Array);          // true
+            Is.a(1, 'object');        // false
+            Is.a(1, 'invalid_type');  // false
+          </pre>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <code>boolean Is.all(vararg v, string|class type [, string|class type [, ... ]])</code>
+        </div>
+        <div class="panel-body">
+          <p>
+            Returns true if <code>Is.a(v, type)</code> is true for each <code>type</code> given. Returns false otherwise.
+          </p>
+          <pre>
+            Is.all([], 'object', Array);  // true
+            Is.all([], 'number', Array);  // false
+          </pre>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <code>boolean Is.some(vararg v, string|class type [, string|class type [, ... ]])</code>
+        </div>
+        <div class="panel-body">
+          <p>
+            Returns true if <code>Is::a(v, type)</code> is true for at least one <code>type</code> provided. Returns false otherwise.
+          </p>
+          <pre>
+            Is.some(1, 'string', 'number');   // true
+            Is.some('a', 'number', 'object'); // false
+          </pre>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <code>void Is.registerAlias(string alias, function fn)</code>
+        </div>
+        <div class="panel-body">
+          <p>
+            Creates a pseudo-type under the name <code>alias</code>. The user-defined function <code>fn</code> should return true when <code>Is::a</code> should return true, and false otherwise. Is.js type tests may check against the alias after it has been registered.<br><br>
+            
+            This can be used to create convenience types, like <code>Positive</code> or <code>HTMLCanvasSource</code>.
+          </p>
+          <pre>
+            Is.a(1, 'natural_number');  // false; natural_number is not a known type
+            Is.registerAlias('natural_number', (v) => Is.a(v, 'integer') && v > 0); // natural_number is registered by Is
+            Is.a(1, 'natural_number');  // true
+          </pre>
+        </div>
+      </div>
+    </div><!-- container -->
+  </body>
