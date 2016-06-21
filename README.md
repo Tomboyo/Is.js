@@ -1,5 +1,5 @@
 # Is.js
-A small validation class for checking types and inheritance quickly.
+Quickly validate that variables meet arbitrary criteria.
 This library is not suitable for cross-frame type-checking.
 
 #####boolean Is.a(vararg v, string|class type)
