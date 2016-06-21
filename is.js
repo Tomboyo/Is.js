@@ -5,7 +5,6 @@
  * Is.js - small type-checking library that features type/instance aliasing
  * Note: Is.js uses instanceof and typeof checks, so this library is not suitable for cross-frame checks.
  * tomasimmons@gmail.com
- * Free to use and distribute with the stipulation that this header always be included.
  **/
 
 class Is {
