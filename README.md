@@ -1,6 +1,6 @@
 # Is.js
 A small validation class for checking types and inheritance quickly.
-THis library is not suitable for cross-frame type-checking.
+This library is not suitable for cross-frame type-checking.
 
 #####boolean Is.a(vararg v, string|class type)
 Returns true if `v` matches `type` or an alias registered under `type` with `Is::registerAlias` (see below). Returns false otherwis (if a string `type` is invalid, `Is::a` will also return false). This conglomerates `typeof` and `instanceof` checks, so bear in mind it is not suitable for cross-frame checks.
