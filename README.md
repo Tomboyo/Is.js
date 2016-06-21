@@ -1,9 +1,10 @@
 # Is.js
 Quickly validate that variables meet arbitrary criteria.
+
 This library is not suitable for cross-frame type-checking.
 
 #####boolean Is.a(vararg v, string|class type)
-Returns true if `v` matches `type` or an alias registered under `type` with `Is::registerAlias` (see below). Returns false otherwis (if a string `type` is invalid, `Is::a` will also return false). This conglomerates `typeof` and `instanceof` checks, so bear in mind it is not suitable for cross-frame checks.
+Returns true if `v` matches `type` or an alias registered under `type` with `Is::registerAlias` (see below). Returns false otherwise (if a string `type` is invalid, `Is::a` will also return false). This conglomerates `typeof` and `instanceof` checks, so bear in mind it is not suitable for cross-frame checks.
 ```
 Is.a([], 'object');       // true
 Is.a([], Array);          // true
